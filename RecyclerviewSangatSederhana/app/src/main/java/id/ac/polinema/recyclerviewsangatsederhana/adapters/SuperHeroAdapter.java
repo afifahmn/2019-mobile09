@@ -4,12 +4,13 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import org.w3c.dom.Text;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -19,7 +20,7 @@ import id.ac.polinema.recyclerviewsangatsederhana.models.SuperHero;
 public class SuperHeroAdapter extends RecyclerView.Adapter<SuperHeroAdapter.MyViewHolder> {
     List<SuperHero> heroList;
 
-    public SuperHeroAdapter(List<SuperHero> heroList){
+    public SuperHeroAdapter(List<SuperHero> heroList) {
         this.heroList = heroList;
     }
 
@@ -39,22 +40,25 @@ public class SuperHeroAdapter extends RecyclerView.Adapter<SuperHeroAdapter.MyVi
 
     @Override
     public void onBindViewHolder(@NonNull SuperHeroAdapter.MyViewHolder holder, int position) {
-        //ambil satu item hero
         SuperHero hero = heroList.get(position);
-        //set text heroName berdasarkan data dari model hero
         holder.heroName.setText(hero.getHeroName());
+        Picasso.get().load(hero.getImgHero())
+                .placeholder(R.drawable.ic_launcher_background)
+                .error(R.drawable.ic_launcher_foreground)
+                .into(holder.imgHero);
     }
-
 
     @Override
     public int getItemCount() {
         return (heroList != null) ? heroList.size() : 0;
     }
 
-    class MyViewHolder extends RecyclerView.ViewHolder {
+    public class MyViewHolder extends RecyclerView.ViewHolder {
+        public ImageView imgHero;
         public TextView heroName;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
+            imgHero = itemView.findViewById(R.id.imgHero);
             heroName = itemView.findViewById(R.id.heroName);
         }
     }

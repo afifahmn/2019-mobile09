@@ -1,10 +1,10 @@
 package id.ac.polinema.recyclerviewsangatsederhana;
 
+import android.os.Bundle;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.os.Bundle;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,11 +24,11 @@ public class MainActivity extends AppCompatActivity {
         //menyambungkan rvSuperHero ke layout
         rvSuperHero = findViewById(R.id.rvSuperHero);
         //Membuat object hero
-        SuperHero hero = new SuperHero("Petruk");
+        SuperHero hero = new SuperHero( R.drawable.a,"Petruk");
         //menambahkan hero ke listSuperHero
         listSuperHero.add(hero);
         //membuat object hero baru
-        hero = new SuperHero("Gareng");
+        hero = new SuperHero( R.drawable.personal_branding,"Gareng");
         //menambahkan hero baru ke listSuperhero
         listSuperHero.add(hero);
         //Instansiasi Adapter
